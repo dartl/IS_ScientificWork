@@ -13,9 +13,8 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default' : {
-        'ENGINE' : 'django_mongodb_engine',
-        'NAME' : 'sw_db',
-        'HOST': '127.0.0.1',
+       'ENGINE' : 'django_mongodb_engine',
+        'NAME' : 'abc',
    }
 }
 
@@ -33,7 +32,7 @@ TIME_ZONE = 'Europe/Moscow'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = u'580f8fccb179a919ac58d885'
+SITE_ID = u'580e116e5be0d32004ae75c5'
 
 DEFAULT_CHARSET = 'UTF-8'
 
