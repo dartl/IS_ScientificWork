@@ -5,13 +5,12 @@ from django.contrib import admin
 # Подключаем наши модели в админку сайта
 
 # Указываем, что из scientificWork.models импортируем конкретную модель Test_collection
-from scientificWork.models import sw_publication, sw_participation, sw_rand, Test_collection, User
+from scientificWork.models import sw_publication, sw_participation, sw_rand, Person
 # Регистрируем импортированную модель в админку
-admin.site.register(Test_collection)
 admin.site.register(sw_publication)
 admin.site.register(sw_rand)
 admin.site.register(sw_participation)
-admin.site.register(User)
+admin.site.register(Person)
 
 
 # Create your models here.

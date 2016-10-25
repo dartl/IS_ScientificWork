@@ -1,18 +1,73 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
 from django.db import models
+from django.contrib.auth.models import User
 
+# Общие модели
+PERSON_TYPE_CHOICES = (
+    ('s', 'Студент'),
+    ('h', 'Староста'),
+    ('t', 'Преподаватель'),
+    ('a', 'Администратор'),
+)
+ACADEMIC_STATUS_CHOICES  = (
+  ('a','Ассистент'),
+  ('s','Старший преподаватель'),
+  ('d','Доцент'),
+  ('p','Профессор'),
+)
+
+ACADEMIC_DEGREE_CHOICES = (
+  ('n','Без степени'),
+  ('t','Кандидат наук'),
+  ('d','Доктор наук'),
+)
+
+
+class Person(models.Model):
+  firstName = models.CharField(max_length=20)
+  lastName = models.CharField(max_length=20)
+  user = models.ForeignKey(
+    User,
+    null=True
+  )
+  type = models.CharField(
+    max_length=2,
+    choices=PERSON_TYPE_CHOICES,
+    default='s'
+  )
+  studyGroup = models.CharField(
+    max_length=5,
+    null=True
+  )
+  birstDate = models.DateField(null=True)
+  #Дата текущего избрания или зачисления на преподавательскую должность
+  electionDate = models.DateField(null=True)
+  #Должность
+  position = models.CharField(max_length=40,null=True)
+  #Срок окончания трудового договора
+  contractDate = models.DateField(null=True) # Возможн поменяю
+  #Ученая степень
+  academicDegree = models.CharField(
+    max_length=1,
+    choices=ACADEMIC_DEGREE_CHOICES,
+    null=True
+  )
+  #Год присвоения ученой степени
+  yearOfAcademicDegree = models.DateField(null=True)
+  #Учебное звание
+  academicStatus = models.CharField(
+    max_length=1,
+    choices=ACADEMIC_STATUS_CHOICES,
+    null=True,
+  )
+  yearOfAcademicStatus = models.DateField(null=True)
+
+
+  def __str__(self):
+    return self.firstName + " " + self.lastName
 # Описание моделей приложения scientificWork
 
-
-# Тестовая модель, для примера
-class Test_collection(models.Model):
-    text = models.TextField()
-
-class User(models.Model):
-    Identifier = models.IntegerField("Идентификатор пользователя")
-    def __str__(self):
-        return str(self.Identifier)
 
 class sw_publication(models.Model):
     tpPubl = (
@@ -26,7 +81,7 @@ class sw_publication(models.Model):
         ('disposable', 'одноразовый'),
         ('repeating','повторяющийся')
     )
-    user = models.ForeignKey(User, default="")
+    user = models.ForeignKey(Person, default="")
     typePublication = models.CharField("Тип публикации",
                                        max_length="20",
                                        choices=tpPubl,
@@ -58,6 +113,7 @@ class sw_participation(models.Model):
         ('conference', 'конференция'),
         ('seminar', 'семинар')
     )
+    user = models.ForeignKey(Person, default="")
     type = models.CharField("Тип", choices=tp, max_length="10", default="conference")  #  тип: конференция - conference, семинар - seminar
     name = models.CharField("Название", max_length="100")  # название
     date = models.DateField("Дата проведения")  # дата проведения
@@ -76,7 +132,7 @@ class sw_participation(models.Model):
 
 
 class sw_rand(models.Model):
-    user = models.ForeignKey(User, default="")
+    user = models.ForeignKey(Person, default="")
     name = models.CharField("Название НИОКР", max_length="100")  # Название НИОКР
     cipher = models.CharField("Шифр", max_length="100")  #Шифр
 
