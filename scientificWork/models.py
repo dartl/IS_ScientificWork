@@ -9,34 +9,74 @@ from django.db import models
 class Test_collection(models.Model):
     text = models.TextField()
 
-class sw_publications(models.Model):
- #   _id = models.IntegerField()  #  Идентификатор публикации
-    typePublication = models.TextField("Тип публикации")  # тип публикации
-    publishingHouseName = models.TextField("Название издательства")  # название издательства
-    place = models.TextField("Место издания")  #  место издания
+class User(models.Model):
+    Identifier = models.IntegerField("Идентификатор пользователя")
+    def __str__(self):
+        return str(self.Identifier)
+
+class sw_publication(models.Model):
+    tpPubl = (
+        ('guidelines', 'Методическое указание'),
+        ('book', 'Книга'),
+        ('journal', 'Статья в журнале'),
+        ('compilation', 'Конспект лекции/сборник докладов'),
+        ('collection ', 'Сборник трудов')
+    )
+    reIter = (
+        ('disposable', 'одноразовый'),
+        ('repeating','повторяющийся')
+    )
+    user = models.ForeignKey(User, default="")
+    typePublication = models.CharField("Тип публикации",
+                                       max_length="20",
+                                       choices=tpPubl,
+                                       default="book")
+
+    publishingHouseName = models.CharField("Название издательства", max_length="100")  # название издательства
+    place = models.CharField("Место издания", max_length="100")  #  место издания
     date = models.DateField("Дата издания")  #  дата издания
     volume = models.IntegerField("Объем")  #  объем
-    unitVolume = models.TextField("Единицы объёма")  #  еденицы объема
+    unitVolume = models.CharField("Единицы объёма", max_length="100")  #  еденицы объема
     edition = models.IntegerField("Тираж")  #  тираж
-    user = models.IntegerField("Идентификатор пользователя")  #  идентификатор пользователя
 
-    type = models.TextField("Вид методического указания")  #  вид методического издания / книги
-    isbn = models.TextField("ISBN")  #  ISBN
+    type = models.CharField("Вид", max_length="100",
+                            help_text="Поле заполняется, если тип вашей публикации"
+                                      " \"Книга\" или \"Методическое указание\"")  #  вид методического издания / книги
+    isbn = models.CharField("ISBN", max_length="100",
+                            help_text="Поле заполняется, если тип вашей публткации"
+                                      "\"Книга\" или \"Методическое указание\"")  #  ISBN
     number = models.IntegerField("Номер издания")  #  номер издания
-    editor = models.TextField("Редактор сборника")  #  редакто сборника
-    reiteration = models.TextField("Вид повторения сборника")  #  вид повторения сборника
+    editor = models.CharField("Редактор сборника", max_length="100")  #  редакто сборника
+    reiteration = models.CharField("Вид повторения сборника",
+                                   choices=reIter,
+                                   max_length="10",
+                                   default="disposable"
+                                   )  #  вид повторения сборника
 
-class sw_participations(models.Model):
- #   _id = models.IntegerField()  # идентифиатор
-    type = models.TextField("Тип (конференция - conference| семинар - seminar)")  #  тип: конференция - conference, семинар - seminar
-    name = models.TextField("Название")  # название
+class sw_participation(models.Model):
+    tp = (
+        ('conference', 'конференция'),
+        ('seminar', 'семинар')
+    )
+    type = models.CharField("Тип", choices=tp, max_length="10", default="conference")  #  тип: конференция - conference, семинар - seminar
+    name = models.CharField("Название", max_length="100")  # название
     date = models.DateField("Дата проведения")  # дата проведения
-    place = models.TextField("Место проведения")  # дата проведения
-    reiteration = models.TextField("Вид проведения (одноразовый - disposable| повторяющийся - repeating")  # вид проведения: одноразовый - disposable, повторяющийся - repeating
-    rank = models.TextField("Ранг") # ранг
+    place = models.CharField("Место проведения", max_length="100")  # дата проведения
+    reIter = (
+        ('disposable', 'одноразовый'),
+        ('repeating', 'повторяющийся')
+    )
+    reiteration = models.CharField("Вид повторения сборника",
+                                    choices=reIter,
+                                    max_length="10",
+                                    default="disposable"
+                                   )  # вид повторения сборника
 
-class sw_RandD(models.Model):
-  #  id = models.TextField() # идентификатор
-    name = models.TextField("Название НИОКР")  # Название НИОКР
-    cipher = models.TextField("Шифр")  #Шифр
-# Create your models here.
+    rank = models.CharField("Ранг", max_length="100") # ранг
+
+
+class sw_rand(models.Model):
+    user = models.ForeignKey(User, default="")
+    name = models.CharField("Название НИОКР", max_length="100")  # Название НИОКР
+    cipher = models.CharField("Шифр", max_length="100")  #Шифр
+
