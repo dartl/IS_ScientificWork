@@ -1,11 +1,12 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
-
+from django.contrib.auth import logout
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 def index(request):
 	return render(request,'scientificWork/index.html')
@@ -51,3 +52,13 @@ def user_login(request):
     else:
         
         return render(request, 'scientificWork/login.html', {})
+
+
+# Используйте декоратор login_required(), чтобы гарантировать, что только авторизированные пользователи смогут получить доступ к этому представлению.
+@login_required
+def user_logout(request):
+    # Поскольку мы знаем, что только вошедшие в систему пользователи имеют доступ к этому представлению, можно осуществить выход из системы
+    logout(request)
+
+    # Перенаправляем пользователя обратно на главную страницу.
+    return HttpResponseRedirect('/scientificWork/')
