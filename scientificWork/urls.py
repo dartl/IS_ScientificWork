@@ -9,4 +9,6 @@ urlpatterns = patterns('',
     url(r'^competitions$', views.competitions, name='competitions'),
     url(r'^publications$', views.publications, name='publications'),
     url(r'^rads$', views.rad, name='rad'),
+    url(r'^login/$', views.user_login, name='login'),
+    url(r'^logout/$', views.user_logout, name='logout'),
 )
