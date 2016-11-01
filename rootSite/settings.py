@@ -14,7 +14,11 @@ MANAGERS = ADMINS
 DATABASES = {
     'default' : {
        'ENGINE' : 'django_mongodb_engine',
-        'NAME' : 'db_sw',
+       'NAME' : 'db_sw',
+       'TEST': {
+            'NAME': 'mytestdatabase',
+            'CREATE_DB' : "False"
+        },
    }
 }
 
@@ -32,7 +36,8 @@ TIME_ZONE = 'Europe/Moscow'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = u'58170dd6b179a90c4831c5e1'
+#SITE_ID = u'12312'
+SITE_ID = u'58171d27b179a90bc8241fe9'
 
 DEFAULT_CHARSET = 'UTF-8'
 
@@ -116,7 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
+    #'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
@@ -124,6 +129,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 
+    'djangotoolbox',
+    'django_mongodb_engine',
     'scientificWork',
 )
 

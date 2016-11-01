@@ -112,7 +112,7 @@ class UserProfile(models.Model):
 # Описание моделей приложения scientificWork
 
 
-class sw_publication(models.Model):
+class Publication(models.Model):
     tpPubl = (
         ('guidelines', 'Методическое указание'),
         ('book', 'Книга'),
@@ -153,7 +153,7 @@ class sw_publication(models.Model):
                                    default="disposable"
                                    )  #  вид повторения сборника
 
-class sw_participation(models.Model):
+class Participation(models.Model):
     tp = (
         ('conference', 'конференция'),
         ('seminar', 'семинар')
@@ -176,8 +176,7 @@ class sw_participation(models.Model):
     rank = models.CharField("Ранг", max_length="100") # ранг
 
 
-class sw_rand(models.Model):
+class Rand(models.Model):
     user = models.ForeignKey(UserProfile, default="")
     name = models.CharField("Название НИОКР", max_length="100")  # Название НИОКР
     cipher = models.CharField("Шифр", max_length="100")  #Шифр
-

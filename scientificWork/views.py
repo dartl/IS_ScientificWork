@@ -17,7 +17,7 @@ def competitions(request):
 def publications(request):
     return render(request,'scientificWork/publications.html')
 
-def rad(request):
+def rads(request):
     return render(request,'scientificWork/rads.html')
 
 
