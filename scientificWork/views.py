@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 from django.contrib.auth import logout
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
