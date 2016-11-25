@@ -1,0 +1,165 @@
+{% extends 'scientificWork/template_main.html' %}
+{% block title %}Публикации{% endblock %}
+{% block pagename %}Публикации{% endblock %}
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Фильтр</h3>
+    </div>
+    <div class="panel-body">
+        <form role="form" action="publications" method="get">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Тип публикации</label>
+                    <select id="disabledSelect" name="typePublication" class="form-control">
+                        <option value="" selected></option>
+                        <option value="guidelines">Методическое указание</option>
+                        <option value="book">Книга</option>
+                        <option value="journal">Статья в журнале</option>
+                        <option value="compilation">Конспект лекции/сборник докладов</option>
+                        <option value="collection">Сборник трудов</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Название издательства</label>
+                    <input type="text" name="publishingHouseName" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Место издания</label>
+                    <input type="text" name="place" class="form-control" placeholder="Какое-то поле">
+                </div>
+                 <div class="col-md-3">
+                    <label for="exampleInputEmail1">Дата издания (ГГГГ-ММ-ДД)</label>
+                    <input type="date" name="date" class="form-control" placeholder="2016-11-26">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Объем</label>
+                    <input type="text" name="volume" class="form-control" placeholder="Какое-то поле">
+                </div>
+                 <div class="col-md-3">
+                    <label for="exampleInputEmail1">Единицы объёма</label>
+                    <input type="text" name="unitVolume" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Тираж</label>
+                    <input type="text" name="edition" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Название публикации</label>
+                    <input type="text" name="bookName" class="form-control" placeholder="Какое-то поле">
+                </div>
+
+                <!--
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+                </div>
+                -->
+                <br/>
+                <div class="col-md-12 text-center filter_button">
+                    <button type="submit" id="btn_filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
+                </div>
+                <!--
+                <script>
+                    function filter() {
+                        window.location = "publications/filter?"+document.getElementById("publishingHouseName").value;
+                    }
+                    document.getElementById("btn_filter").onclick = filter;
+                </script>
+                -->
+            </div>
+        </form>
+        {% for note in notes %}
+
+            <div class="col-md-3">
+                    <label for="exampleInputEmail1">Автор</label>
+                    <p>{{ note.user }}</p>
+
+                    <label for="exampleInputEmail1">Тип публикации</label>
+                    <p>{{ note.typePublication }}</p>
+
+                    <label for="exampleInputEmail1">Название издательства</label>
+                    <p>{{ note.publishingHouseName }}</p>
+
+                    <label for="exampleInputEmail1">Место издания</label>
+                    <p>{{ note.place }}</p>
+
+                    <label for="exampleInputEmail1">Дата издания</label>
+                    <p>{{ note.date }}</p>
+
+                    <label for="exampleInputEmail1">Объём</label>
+                    <p>{{ note.volume }}</p>
+
+                    <label for="exampleInputEmail1">Единицы объёма</label>
+                    <p>{{ note.unitVolume }}</p>
+
+                    <label for="exampleInputEmail1">Тираж</label>
+                    <p>{{ note.edition }}</p>
+
+                    <label for="exampleInputEmail1">Название</label>
+                    <p>{{ note.bookName }}</p>
+
+                    <label for="exampleInputEmail1">Вид</label>
+                    <p>{{ note.type }}</p>
+
+                    <label for="exampleInputEmail1">ISBN</label>
+                    <p>{{ note.ISBN }}</p>
+
+                    <label for="exampleInputEmail1">Номер издания</label>
+                    <p>{{ note.number }}</p>
+
+                    <label for="exampleInputEmail1">Редактор сборника</label>
+                    <p>{{ note.editor }}</p>
+
+                    <label for="exampleInputEmail1">Название сборника</label>
+                    <p>{{ note.nameSbornik }}</p>
+
+                    <label for="exampleInputEmail1">Вид повторения сборника</label>
+                    <p>{{ note.reiteration }}</p>
+
+            </div>
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
