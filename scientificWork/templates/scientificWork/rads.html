@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {% load staticfiles %}
 <!doctype html>
     <head>
@@ -56,6 +57,42 @@
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <div class="page-header">
                   <h1>НИОКР</h1>
+=======
+{% extends 'scientificWork/template_main.html' %}
+{% block title %}НИОКР{% endblock %}
+{% block pagename %}НИОКР{% endblock %}
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Фильтр</h3>
+    </div>
+    <div class="panel-body">
+        <form role="form" action="rads" method="get">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">название НИОКР</label>
+                    <input type="text" name="name" class="form-control" placeholder="Введите название">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">шифр  НИОКР</label>
+                    <input type="text" name="cipher"    class="form-control" placeholder="Введите шифр">
+                </div>
+               <!-- <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+>>>>>>> Stashed changes
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -123,6 +160,7 @@
                 <div class="col-md-12 text-center">
                     <a class="btn btn-primary" href="add.html"><span class="glyphicon glyphicon-plus"></span> Добавить</a>
                 </div>
+<<<<<<< Updated upstream
                 <div class="col-md-12 text-center">
                     <div class="elements">
                         <div class="element bg-primary">
@@ -180,3 +218,41 @@
         <script src="js/bootstrap.min.js"></script>
     </body>
 </html>
+=======
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+                </div>-->
+                <br/>
+                <div class="col-md-12 text-center filter_button">
+                    <button type="submit"  class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
+                </div>
+            </div>
+        </form>
+        {% for Rand in rands %}
+        
+             <ul>
+                
+                <p><li><strong>Название</strong>:{{ Rand.name }}</p> <p><strong>Шифр</strong>:{{ Rand.cipher }}</li></p>
+                
+             </ul>
+                {% endfor %}
+            
+        </div>
+   
+  
+        
+
+
+
+ 
+</div>
+</div>
+{% endblock %}
+
+
+>>>>>>> Stashed changes

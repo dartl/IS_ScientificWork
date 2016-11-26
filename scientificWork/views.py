@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from scientificWork.models import Rand
 
 def index(request):
 	return render(request,'scientificWork/index.html')
@@ -17,9 +18,27 @@ def competitions(request):
 def publications(request):
     return render(request,'scientificWork/publications.html')
 
+<<<<<<< Updated upstream
 def rad(request):
     return render(request,'scientificWork/rads.html')
 
+=======
+def rads(request):
+    if request.GET:
+     point=Rand.objects.all()
+     
+   
+     n=request.GET['name']
+     cip=request.GET['cipher']
+     if (n!= ''): point = point.filter(name=n)
+     if (cip!= ''): point = point.filter(cipher=cip)
+     context_dict={'rands':point}
+     return render(request,'scientificWork/rads.html', context_dict)
+    else:
+        point=Rand.objects.order_by('user')[:5]
+        context_dict={'rands':point}
+        return render(request, 'scientificWork/rads.html',context_dict) 
+>>>>>>> Stashed changes
 
 
 def user_login(request):
