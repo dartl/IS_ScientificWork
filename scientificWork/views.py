@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 from django.contrib.auth import logout
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
@@ -8,22 +8,53 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from scientificWork.models import Rand
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render_to_response
+from scientificWork.models import Participation
 def index(request):
 	return render(request,'scientificWork/index.html')
 
 def competitions(request):
-    return render(request,'scientificWork/competitions.html')
+    comp_list=Participation.objects.all()
+    paginator=Paginator(comp_list,5)
+    page=request.GET.get('page')
+    try:
+        comps=paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        comps=paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        comps=paginator.page(paginator.num_pages)
+
+    return render_to_response('scientificWork/competitions.html',{"comps": comps})
 
 def publications(request):
     return render(request,'scientificWork/publications.html')
 
-<<<<<<< Updated upstream
-def rad(request):
-    return render(request,'scientificWork/rads.html')
 
-=======
+     
+    
+
+
+
 def rads(request):
+    
+    rand_list=Rand.objects.all()
+    paginator=Paginator(rand_list,5)
+    page=request.GET.get('page')
+    try:
+        rands=paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        rands=paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        rands=paginator.page(paginator.num_pages)
+
+    return render_to_response('scientificWork/rads.html',{"rands": rands})
+
+'''def rads(request):
     if request.GET:
      point=Rand.objects.all()
      
@@ -37,9 +68,7 @@ def rads(request):
     else:
         point=Rand.objects.order_by('user')[:5]
         context_dict={'rands':point}
-        return render(request, 'scientificWork/rads.html',context_dict) 
->>>>>>> Stashed changes
-
+        return render(request, 'scientificWork/rads.html',context_dict)'''
 
 def user_login(request):
 
