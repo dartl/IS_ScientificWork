@@ -19,8 +19,9 @@ def competitions(request):
  #   return render(request,'scientificWork/publications.html')
 
 def publications(request):
+    s = Publication.objects.all()
+    count = 3
     if request.GET:
-        s = Publication.objects.all()
         pH = request.GET['publishingHouseName']
         pl = request.GET['place']
         tp = request.GET['typePublication']
@@ -29,6 +30,12 @@ def publications(request):
         uvl = request.GET['unitVolume']
         ed = request.GET['edition']
         nm = request.GET['bookName']
+        type = request.GET['type']
+        ISBN = request.GET['isbn']
+        number = request.GET['number']
+        editor = request.GET['editor']
+        nameSbornik = request.GET['nameSbornik']
+        reiteration = request.GET['reiteration']
         if(pH != ''): s = s.filter(publishingHouseName=pH)
         if(pl != ''): s = s.filter(place=pl)
         if(tp != ''): s = s.filter(typePublication=tp)
@@ -37,10 +44,17 @@ def publications(request):
         if(uvl != ''): s = s.filter(unitVolume=uvl)
         if(ed != ''): s = s.filter(edition=ed)
         if(nm != ''): s = s.filter(bookName=nm)
+        if(type != ''): s = s.filter(type=type)
+        if(ISBN != ''): s = s.filter(isbn=ISBN)
+        if(number != ''): s = s.filter(number=number)
+        if(editor != ''): s = s.filter(editor=editor)
+        if(nameSbornik != ''): s = s.filter(nameSbornik=nameSbornik)
+        if(reiteration != ''): s = s.filter(reiteration=reiteration)
         return render(request,'scientificWork/publications.html',
-             {'notes': s})
+             {'notes': s[0:count]})
     else:
-        return render(request, 'scientificWork/publications.html')
+        return render(request, 'scientificWork/publications.html',
+                      {'notes': s})
 
 def rads(request):
     return render(request,'scientificWork/rads.html')
