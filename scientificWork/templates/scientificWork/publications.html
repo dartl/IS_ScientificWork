@@ -139,6 +139,25 @@
         </form>
 
     </div>
+</div>
+    <div class="pagination">
+    <span class="step-links">
+
+<!--?typePublication=guidelines&publishingHouseName=&place=&date=&volume=&unitVolume=&edition=&bookName=&type=&isbn=&number=
+&editor=&nameSbornik=&reiteration= -->
+        {% if notes.has_previous %}
+            <a href="?page={{ notes.previous_page_number }}&typePublication={{ tp }}&publishingHouseName={{ pH }}&place={{ pl }}&date={{ dt }}&volume={{ vl }}&unitVolume={{ uvl }}&edition={{ ed }}&bookName={{ nm }}&type={{ type }}&isbn={{ ISBN }}&number={{ number }}&editor={{ editor }}&nameSbornik={{ nameSbornik }}&reiteration={{ reiteration }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ notes.number }} of {{ notes.paginator.num_pages }}.
+        </span>
+
+        {% if notes.has_next %}
+            <a href="?page={{ notes.next_page_number }}&typePublication={{ tp }}&publishingHouseName={{ pH }}&place={{ pl }}&date={{ dt }}&volume={{ vl }}&unitVolume={{ uvl }}&edition={{ ed }}&bookName={{ nm }}&type={{ type }}&isbn={{ ISBN }}&number={{ number }}&editor={{ editor }}&nameSbornik={{ nameSbornik }}&reiteration={{ reiteration }}">next</a>
+        {% endif %}
+    </span>
+    </div>
     {% for note in notes %}
 
             <div class="col-md-3">
@@ -206,5 +225,6 @@
             </div>
 
     {% endfor %}
-</div>
+
+
 {% endblock %}
