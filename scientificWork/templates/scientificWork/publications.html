@@ -48,6 +48,34 @@
                     <label for="exampleInputEmail1">Название публикации</label>
                     <input type="text" name="bookName" class="form-control" placeholder="Какое-то поле">
                 </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Вид</label>
+                    <input type="text" name="type" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">ISBN</label>
+                    <input type="text" name="isbn" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Номер издания</label>
+                    <input type="text" name="number" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Редактор сборника</label>
+                    <input type="text" name="editor" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Название сборника</label>
+                    <input type="text" name="nameSbornik" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Вид повторения сборника</label>
+                    <select id="disabledSelect" name="reiteration" class="form-control">
+                        <option value="" selected></option>
+                        <option value="disposable">одноразовый</option>
+                        <option value="repeating">повторяющийся</option>
+                    </select>
+                </div>
 
                 <!--
                 <div class="col-md-3">
@@ -109,14 +137,28 @@
                 -->
             </div>
         </form>
-        {% for note in notes %}
+
+    </div>
+    {% for note in notes %}
 
             <div class="col-md-3">
                     <label for="exampleInputEmail1">Автор</label>
                     <p>{{ note.user }}</p>
 
                     <label for="exampleInputEmail1">Тип публикации</label>
-                    <p>{{ note.typePublication }}</p>
+                    {% if note.typePublication == "book" %}
+                        <p>Книга</p>
+                    {% elif note.typePublication == "collection" %}
+                        <p>Сборник трудов</p>
+                    {% elif note.typePublication == "journal" %}
+                        <p>Журнал</p>
+                    {% elif note.typePublication == "guidelines" %}
+                        <p>Методическое указание</p>
+                    {% elif note.typePublication == "compilation" %}
+                        <p>Конспект лекции/сборник докладов</p>
+
+                    {% endif %}
+
 
                     <label for="exampleInputEmail1">Название издательства</label>
                     <p>{{ note.publishingHouseName }}</p>
@@ -143,7 +185,7 @@
                     <p>{{ note.type }}</p>
 
                     <label for="exampleInputEmail1">ISBN</label>
-                    <p>{{ note.ISBN }}</p>
+                    <p>{{ note.isbn }}</p>
 
                     <label for="exampleInputEmail1">Номер издания</label>
                     <p>{{ note.number }}</p>
@@ -155,11 +197,14 @@
                     <p>{{ note.nameSbornik }}</p>
 
                     <label for="exampleInputEmail1">Вид повторения сборника</label>
-                    <p>{{ note.reiteration }}</p>
+                    {% if note.reiteration == "disposable" %}
+                         <p>Одноразовый</p>
+                    {% elif note.reiteration == "repeating" %}
+                        <p>Повторяющийся</p>
+                    {% endif %}
 
             </div>
 
-        {% endfor %}
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}
