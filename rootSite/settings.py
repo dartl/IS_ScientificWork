@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 # Django settings for rootSite project.
 
 DEBUG = True
@@ -12,11 +12,11 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default' : {
-        'ENGINE' : 'django_mongodb_engine',
-        'NAME' : 'helpme',
+    'default': {
+        'ENGINE': 'django_mongodb_engine',
+        'NAME': 'helpme',
         'HOST': '127.0.0.1',
-   }
+    }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -33,6 +33,7 @@ TIME_ZONE = 'Europe/Moscow'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
+#SITE_ID = u'12312'
 SITE_ID = u'580de3331d397b08f0bf4bf2'
 
 DEFAULT_CHARSET = 'UTF-8'
@@ -117,7 +118,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
+    #'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
@@ -125,6 +126,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 
+    'djangotoolbox',
+    'django_mongodb_engine',
     'scientificWork',
 )
 

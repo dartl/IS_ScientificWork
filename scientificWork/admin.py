@@ -1,17 +1,16 @@
 #!/usr/bin/python
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 
 # Подключаем наши модели в админку сайта
 
 # Указываем, что из scientificWork.models импортируем конкретную модель Test_collection
-from scientificWork.models import sw_publication, sw_participation, sw_rand, Test_collection, User
+from scientificWork.models import Publication, Participation, Rand, UserProfile
 # Регистрируем импортированную модель в админку
-admin.site.register(Test_collection)
-admin.site.register(sw_publication)
-admin.site.register(sw_rand)
-admin.site.register(sw_participation)
-admin.site.register(User)
+admin.site.register(Publication)
+admin.site.register(Rand)
+admin.site.register(Participation)
+admin.site.register(UserProfile)
 
 
 # Create your models here.
