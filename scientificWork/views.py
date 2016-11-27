@@ -7,18 +7,47 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-
+from scientificWork.models import Rand
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render_to_response
+from scientificWork.models import Participation
 def index(request):
 	return render(request,'scientificWork/index.html')
 
+ 
 def competitions(request):
-    return render(request,'scientificWork/competitions.html')
+    comp_list=Participation.objects.all()
+    paginator=Paginator(comp_list,5)
+    page=request.GET.get('page')
+    try:
+        comps=paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        comps=paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        comps=paginator.page(paginator.num_pages)
 
+    return render_to_response('scientificWork/competitions.html',{"comps": comps})
+    
 def publications(request):
     return render(request,'scientificWork/publications.html')
 
 def rads(request):
-    return render(request,'scientificWork/rads.html')
+    
+    rand_list=Rand.objects.all()
+    paginator=Paginator(rand_list,5)
+    page=request.GET.get('page')
+    try:
+        rands=paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        rands=paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        rands=paginator.page(paginator.num_pages)
+
+    return render_to_response('scientificWork/rads.html',{"rands": rands})
 
 
 
