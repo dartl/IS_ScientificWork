@@ -7,6 +7,7 @@
         <h3 class="panel-title">Фильтр</h3>
     </div>
     <div class="panel-body">
+<<<<<<< HEAD
         <form role="form">
             <div class="row">
                 <div class="col-md-3">
@@ -60,9 +61,232 @@
                 <br/>
                 <div class="col-md-12 text-center filter_button">
                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
+=======
+        <form role="form" action="publications" method="get">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Тип публикации</label>
+                    <select id="disabledSelect" name="typePublication" class="form-control">
+                        <option value="" selected></option>
+                        <option value="guidelines">Методическое указание</option>
+                        <option value="book">Книга</option>
+                        <option value="journal">Статья в журнале</option>
+                        <option value="compilation">Конспект лекции/сборник докладов</option>
+                        <option value="collection">Сборник трудов</option>
+                    </select>
                 </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Название издательства</label>
+                    <input type="text" name="publishingHouseName" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Место издания</label>
+                    <input type="text" name="place" class="form-control" placeholder="Какое-то поле">
+                </div>
+                 <div class="col-md-3">
+                    <label for="exampleInputEmail1">Дата издания (ГГГГ-ММ-ДД)</label>
+                    <input type="date" name="date" class="form-control" placeholder="2016-11-26">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Объем</label>
+                    <input type="text" name="volume" class="form-control" placeholder="Какое-то поле">
+                </div>
+                 <div class="col-md-3">
+                    <label for="exampleInputEmail1">Единицы объёма</label>
+                    <input type="text" name="unitVolume" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Тираж</label>
+                    <input type="text" name="edition" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Название публикации</label>
+                    <input type="text" name="bookName" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Вид</label>
+                    <input type="text" name="type" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">ISBN</label>
+                    <input type="text" name="isbn" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Номер издания</label>
+                    <input type="text" name="number" class="form-control" placeholder="Какое-то поле">
+>>>>>>> refs/remotes/origin/Talanov
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Редактор сборника</label>
+                    <input type="text" name="editor" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Название сборника</label>
+                    <input type="text" name="nameSbornik" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Вид повторения сборника</label>
+                    <select id="disabledSelect" name="reiteration" class="form-control">
+                        <option value="" selected></option>
+                        <option value="disposable">одноразовый</option>
+                        <option value="repeating">повторяющийся</option>
+                    </select>
+                </div>
+
+                <!--
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleInputEmail1">Какое-то поле</label>
+                    <select id="disabledSelect" class="form-control">
+                        <option>Первый пункт</option>
+                        <option>Второй пункт</option>
+                        <option>Третий пункт</option>
+                    </select>
+                </div>
+                -->
+                <br/>
+                <div class="col-md-12 text-center filter_button">
+                    <button type="submit" id="btn_filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
+                </div>
+                <!--
+                <script>
+                    function filter() {
+                        window.location = "publications/filter?"+document.getElementById("publishingHouseName").value;
+                    }
+                    document.getElementById("btn_filter").onclick = filter;
+                </script>
+                -->
             </div>
+        </form>
+
+    </div>
+</div>
+    <div class="pagination">
+    <span class="step-links">
+
+<!--?typePublication=guidelines&publishingHouseName=&place=&date=&volume=&unitVolume=&edition=&bookName=&type=&isbn=&number=
+&editor=&nameSbornik=&reiteration= -->
+        {% if notes.has_previous %}
+            <a href="?page={{ notes.previous_page_number }}&typePublication={{ tp }}&publishingHouseName={{ pH }}&place={{ pl }}&date={{ dt }}&volume={{ vl }}&unitVolume={{ uvl }}&edition={{ ed }}&bookName={{ nm }}&type={{ type }}&isbn={{ ISBN }}&number={{ number }}&editor={{ editor }}&nameSbornik={{ nameSbornik }}&reiteration={{ reiteration }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ notes.number }} of {{ notes.paginator.num_pages }}.
+        </span>
+
+        {% if notes.has_next %}
+            <a href="?page={{ notes.next_page_number }}&typePublication={{ tp }}&publishingHouseName={{ pH }}&place={{ pl }}&date={{ dt }}&volume={{ vl }}&unitVolume={{ uvl }}&edition={{ ed }}&bookName={{ nm }}&type={{ type }}&isbn={{ ISBN }}&number={{ number }}&editor={{ editor }}&nameSbornik={{ nameSbornik }}&reiteration={{ reiteration }}">next</a>
+        {% endif %}
+    </span>
+    </div>
+    {% for note in notes %}
+
+            <div class="col-md-3">
+                    <label for="exampleInputEmail1">Автор</label>
+                    <p>{{ note.user }}</p>
+
+                    <label for="exampleInputEmail1">Тип публикации</label>
+                    {% if note.typePublication == "book" %}
+                        <p>Книга</p>
+                    {% elif note.typePublication == "collection" %}
+                        <p>Сборник трудов</p>
+                    {% elif note.typePublication == "journal" %}
+                        <p>Журнал</p>
+                    {% elif note.typePublication == "guidelines" %}
+                        <p>Методическое указание</p>
+                    {% elif note.typePublication == "compilation" %}
+                        <p>Конспект лекции/сборник докладов</p>
+
+                    {% endif %}
+
+
+                    <label for="exampleInputEmail1">Название издательства</label>
+                    <p>{{ note.publishingHouseName }}</p>
+
+                    <label for="exampleInputEmail1">Место издания</label>
+                    <p>{{ note.place }}</p>
+
+                    <label for="exampleInputEmail1">Дата издания</label>
+                    <p>{{ note.date }}</p>
+
+                    <label for="exampleInputEmail1">Объём</label>
+                    <p>{{ note.volume }}</p>
+
+                    <label for="exampleInputEmail1">Единицы объёма</label>
+                    <p>{{ note.unitVolume }}</p>
+
+                    <label for="exampleInputEmail1">Тираж</label>
+                    <p>{{ note.edition }}</p>
+
+                    <label for="exampleInputEmail1">Название</label>
+                    <p>{{ note.bookName }}</p>
+
+                    <label for="exampleInputEmail1">Вид</label>
+                    <p>{{ note.type }}</p>
+
+                    <label for="exampleInputEmail1">ISBN</label>
+                    <p>{{ note.isbn }}</p>
+
+                    <label for="exampleInputEmail1">Номер издания</label>
+                    <p>{{ note.number }}</p>
+
+                    <label for="exampleInputEmail1">Редактор сборника</label>
+                    <p>{{ note.editor }}</p>
+
+                    <label for="exampleInputEmail1">Название сборника</label>
+                    <p>{{ note.nameSbornik }}</p>
+
+                    <label for="exampleInputEmail1">Вид повторения сборника</label>
+                    {% if note.reiteration == "disposable" %}
+                         <p>Одноразовый</p>
+                    {% elif note.reiteration == "repeating" %}
+                        <p>Повторяющийся</p>
+                    {% endif %}
+
+            </div>
+<<<<<<< HEAD
         </form>
     </div>
 </div>
+=======
+
+    {% endfor %}
+
+
+>>>>>>> refs/remotes/origin/Talanov
 {% endblock %}

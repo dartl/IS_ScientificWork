@@ -12,6 +12,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
+<<<<<<< HEAD
     'default' : {
        'ENGINE' : 'django_mongodb_engine',
        'NAME' : 'db_sw',
@@ -20,6 +21,13 @@ DATABASES = {
             'CREATE_DB' : "False"
         },
    }
+=======
+    'default': {
+        'ENGINE': 'django_mongodb_engine',
+        'NAME': 'helpme',
+        'HOST': '127.0.0.1',
+    }
+>>>>>>> refs/remotes/origin/Talanov
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -37,7 +45,11 @@ TIME_ZONE = 'Europe/Moscow'
 LANGUAGE_CODE = 'en-us'
 
 #SITE_ID = u'12312'
+<<<<<<< HEAD
 SITE_ID = u'58171d27b179a90bc8241fe9'
+=======
+SITE_ID = u'580de3331d397b08f0bf4bf2'
+>>>>>>> refs/remotes/origin/Talanov
 
 DEFAULT_CHARSET = 'UTF-8'
 
