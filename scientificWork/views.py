@@ -3,12 +3,6 @@
 from django.contrib.auth import logout
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
-<<<<<<< HEAD
-from django.http import HttpResponseRedirect, HttpResponse
-from django.views.generic.edit import FormView
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required
-=======
 from django.http import HttpResponseRedirect, HttpResponse, HttpRequest
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
@@ -16,16 +10,12 @@ from django.contrib.auth.decorators import login_required
 from scientificWork.models import Publication
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
->>>>>>> refs/remotes/origin/Talanov
-
 def index(request):
 	return render(request,'scientificWork/index.html')
 
 def competitions(request):
     return render(request,'scientificWork/competitions.html')
 
-#def publications(request):
- #   return render(request,'scientificWork/publications.html')
 
 def publications(request):
     s = Publication.objects.all()
@@ -106,8 +96,6 @@ def publications(request):
 def rads(request):
     return render(request,'scientificWork/rads.html')
 
-
-
 def user_login(request):
 
     
@@ -146,7 +134,6 @@ def user_logout(request):
     # Поскольку мы знаем, что только вошедшие в систему пользователи имеют доступ к этому представлению, можно осуществить выход из системы
     logout(request)
 
-<<<<<<< HEAD
 def rads(request):
     return render(request,'scientificWork/rads.html')
 
@@ -189,8 +176,5 @@ def user_login(request):
 def user_logout(request):
     # Поскольку мы знаем, что только вошедшие в систему пользователи имеют доступ к этому представлению, можно осуществить выход из системы
     logout(request)
-
-=======
->>>>>>> refs/remotes/origin/Talanov
     # Перенаправляем пользователя обратно на главную страницу.
     return HttpResponseRedirect('/scientificWork/')
