@@ -7,15 +7,28 @@ from django.http import HttpResponseRedirect, HttpResponse, HttpRequest
 from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from scientificWork.models import Publication, UserProfile
+from scientificWork.models import Publication, UserProfile, Rand, Participation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render_to_response
 
 def index(request):
 	return render(request,'scientificWork/index.html')
 
+ 
 def competitions(request):
-    return render(request,'scientificWork/competitions.html')
-
+    comp_list=Participation.objects.all()
+    paginator=Paginator(comp_list,5)
+    page=request.GET.get('page')
+    try:
+        comps=paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        comps=paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        comps=paginator.page(paginator.num_pages)
+    return render_to_response('scientificWork/competitions.html',{"comps": comps})
+    
 
 def publications(request):
     s = Publication.objects.all()
@@ -64,7 +77,6 @@ def publications(request):
         if (reiteration != ''): s = s.filter(reiteration=reiteration)
     paginator = Paginator(s, 10)
     page = request.POST.get('page')
-
     try:
         s = paginator.page(page)
     except PageNotAnInteger:
@@ -74,25 +86,38 @@ def publications(request):
         s = paginator.page(paginator.num_pages)
 
     return render(request, 'scientificWork/publications.html',
-                      {'notes': s,
-                       'pH': pH,
-                       'pl': pl,
-                       'tp': tp,
-                       'dt': dt,
-                       'vl': vl,
-                       'uvl': uvl,
-                       'ed': ed,
-                       'nm': nm,
-                       'type': type,
-                       'ISBN': ISBN,
-                       'number': number,
-                       'editor': editor,
-                       'nameSbornik': nameSbornik,
-                       'reiteration': reiteration
-                       })
+                  {'notes': s,
+                   'pH': pH,
+                   'pl': pl,
+                   'tp': tp,
+                   'dt': dt,
+                   'vl': vl,
+                   'uvl': uvl,
+                   'ed': ed,
+                   'nm': nm,
+                   'type': type,
+                   'ISBN': ISBN,
+                   'number': number,
+                   'editor': editor,
+                   'nameSbornik': nameSbornik,
+                   'reiteration': reiteration
+                   })
 
 def rads(request):
-    return render(request,'scientificWork/rads.html')
+    
+    rand_list=Rand.objects.all()
+    paginator=Paginator(rand_list,5)
+    page=request.GET.get('page')
+    try:
+        rands=paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        rands=paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        rands=paginator.page(paginator.num_pages)
+
+    return render_to_response('scientificWork/rads.html',{"rands": rands})
 
 def user_login(request):
     if request.method == 'POST':

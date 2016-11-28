@@ -63,6 +63,37 @@
                 </div>
             </div>
         </form>
+
+        {%for comp in comps%} 
+         {# Each "comp" is a Comps model object. #}
+         <ul>
+         <p><strong>Тип</strong>:{{comp.type}}</p>
+         <p><li><strong>Название</strong>:{{comp.name}}</p>
+         <p><strong>Дата проведения</strong>:{{comp.date}}</p>
+         <p><strong>Место проведения</strong>:{{comp.place}}</p>
+         <p><strong>Вид повторения</strong>:{{comp.reiteration}}</p>
+         <p><strong>Ранг</strong>:{{comp.rank}}</p>
+
+         </ul>
+         
+                
+          {% endfor %}
+          
+          <div class="pagination">
+    <span class="step-links">
+        {% if comps.has_previous %}
+            <a href="?page={{ comps.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ comps.number }} of {{ comps.paginator.num_pages }}.
+        </span>
+
+        {% if comps.has_next %}
+            <a href="?page={{ comps.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+     
     </div>
 </div>
 {% endblock %}
