@@ -2,67 +2,124 @@
 {% block title %}Конкурсы и семинары{% endblock %}
 {% block pagename %}Конкурсы и семинары{% endblock %}
 {% block content %}
-<div class="panel panel-default">
+<div class="panel panel-default filter">
     <div class="panel-heading">
         <h3 class="panel-title">Фильтр</h3>
     </div>
     <div class="panel-body">
-        <form role="form">
+        <form role="form" action="competitions" method="POST">
+        {% csrf_token %}
             <div class="row">
                 <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <input type="email" class="form-control" placeholder="Какое-то поле">
-                </div>
-                <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <input type="email" class="form-control" placeholder="Какое-то поле">
-                </div>
-                <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <input type="email" class="form-control" placeholder="Какое-то поле">
-                </div>
-                <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <input type="email" class="form-control" placeholder="Какое-то поле">
-                </div>
-                <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <select id="disabledSelect" class="form-control">
-                        <option>Первый пункт</option>
-                        <option>Второй пункт</option>
-                        <option>Третий пункт</option>
+                    <label for="type">Тип </label>
+                    <select id="disabledSelect" name="type" class="form-control">
+                        <option value="" selected>...</option>
+                        <option value="conference">Конференция </option>
+                        <option value="seminar">Cеминар </option>
+                        
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <select id="disabledSelect" class="form-control">
-                        <option>Первый пункт</option>
-                        <option>Второй пункт</option>
-                        <option>Третий пункт</option>
-                    </select>
+                    <label for="name">Название конференции/семинара </label>
+                    <input type="text" name="name" class="form-control" placeholder="Название">
                 </div>
                 <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <select id="disabledSelect" class="form-control">
-                        <option>Первый пункт</option>
-                        <option>Второй пункт</option>
-                        <option>Третий пункт</option>
-                    </select>
+                    <label for="place">Место проведения </label>
+                    <input type="text" name="place" class="form-control" placeholder="Город/адрес">
                 </div>
-                <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <select id="disabledSelect" class="form-control">
-                        <option>Первый пункт</option>
-                        <option>Второй пункт</option>
-                        <option>Третий пункт</option>
+                 <div class="col-md-3">
+                    <label for="date">Дата проведения (ДД-ММ-ГГГГ)</label>
+                    <input type="date" name="date" class="form-control" placeholder="26-11-2016">
+                </div>
+                <div class="col-md-3 ">
+                    <label for="rank">Ранг</label>
+                    <input type="text" name="rank" class="form-control" placeholder="Ранг">
+                </div>
+                <div class="col-md-3 display-none">
+                    <label for="reiteration">Вид повторения </label>
+                    <select id="disabledSelect" name="reiteration" class="form-control">
+                        <option value="" selected>...</option>
+                        <option value="disposable">одноразовый</option>
+                        <option value="repeating">повторяющийся</option>
                     </select>
                 </div>
                 <br/>
+
                 <div class="col-md-12 text-center filter_button">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
+                     <button type="submit" id="btn_filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
+                    <button type="reset" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span> Сбросить</button>
                 </div>
+                
             </div>
         </form>
+
     </div>
 </div>
+<div class="row content">
+    {% for comp in comps %}
+        <div class="col-md-12 element">
+            <div class="col-md-3">
+                <strong>Название</strong>
+                <p>{{ comp.name }}</p>
+        </div>
+            
+            <div class="col-md-3">
+                <strong>Тип </strong>
+                {% if comp.type == "conference" %}
+                    <p>Конференция</p>
+                {% elif comp.type == "seminar" %}
+                    <p>Семинар</p>
+                
+                {% endif %}
+            </div>
+
+            <div class="col-md-3">
+                <strong>Ранг</strong>
+                <p>{{ comp.rank }}</p>
+            </div>
+
+            <div class="col-md-3">
+                <strong>Место проведения</strong>
+                <p>{{ comp.place }}</p>
+            </div>
+
+            <div class="col-md-3">
+                <strong>Дата проведения</strong>
+                <p>{{ comp.date|date:'d-m-Y' }}</p>
+            </div>
+
+            
+
+                <div class="col-md-3">
+                    <strong>Вид повторения </strong>
+                    {% if comp.reiteration == "disposable" %}
+                         <p>Одноразовый</p>
+                    {% elif comp.reiteration == "repeating" %}
+                        <p>Повторяющийся</p>
+                    {% endif %}
+                </div>
+            
+        </div>
+    {% endfor %}
+    <div class="col-md-12 pagination text-center">
+        <span class="step-links">
+
+    <!--?typePublication=guidelines&publishingHouseName=&place=&date=&volume=&unitVolume=&edition=&bookName=&type=&isbn=&number=
+    &editor=&nameSbornik=&reiteration= -->
+            {% if comps.has_previous %}
+                <a href="?page={{ comps.previous_page_number }}&type={{ t }}&date={{dt}}&name={{ n }}&rank={{ rk }}&place={{ p }}&reiteration={{ r }}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ comps.number }} из {{ comps.paginator.num_pages }}.
+            </span>
+
+            {% if comps.has_next %}
+                <a href="?page={{ comps.next_page_number }}&type={{ t }}&date={{dt}}&name={{ n }}&rank={{ rk }}&place={{ p }}&reiteration={{ r }}">Следующая</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+    
 {% endblock %}

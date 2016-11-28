@@ -9,13 +9,57 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from scientificWork.models import Publication, UserProfile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from scientificWork.models import Participation
 
+from scientificWork.models import Rand
 def index(request):
 	return render(request,'scientificWork/index.html')
 
 def competitions(request):
-    return render(request,'scientificWork/competitions.html')
 
+    return render(request,'scientificWork/competitions.html')
+def competitions(request):
+    comp_list=Participation.objects.all()
+    t=''
+    n = ''
+    dt = ''
+    p = ''    
+    r=''
+    rk=''
+    if request.POST:
+        t=request.POST.get('type')
+        n = request.POST.get('name')
+        p = request.POST.get('place')
+        dt = request.POST.get('date')        
+        r = request.POST.get('reiteration')
+        rk = request.POST.get('rank')       
+        if (t != ''): comp_list = comp_list.filter(type=t)
+        if (n != ''): comp_list = comp_list.filter(name=n)
+        if (p != ''): comp_list = comp_list.filter(place=p)
+        if (dt != ''): comp_list = comp_list.filter(date=dt)
+        if (r != ''): s = s.filter(reiteration=r)        
+        if (rk != ''): comp_list = comp_list.filter(rank=rk)       
+    paginator = Paginator(comp_list, 10)
+    page = request.POST.get('page')
+    try:
+        comp_list = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        comp_list = paginator.page(1)
+    except EmptyPage:
+        comp_list = paginator.page(paginator.num_pages)
+
+    return render(request, 'scientificWork/competitions.html',
+                      {'comps': comp_list,
+                       't': t,
+                       'p': p,
+                       'n': n,
+                       'dt': dt,
+                       
+                       'rk': rk,
+                       
+                       'r': r
+                       })
 
 def publications(request):
     s = Publication.objects.all()
@@ -92,8 +136,27 @@ def publications(request):
                        })
 
 def rads(request):
-    return render(request,'scientificWork/rads.html')
+    rand_list=Rand.objects.all()
+    n=''
+    c=''
+    if request.POST:
+        n=request.POST.get('name')
+        c=request.POST.get('cipher')
+        if(n!=''):rand_list=rand_list.filter(name=n)
+        if(c!=''):rand_list=rand_list.filter(cipher=c)
+    
+    paginator=Paginator(rand_list,5)
+    page=request.POST.get('page')
+    try:
+        rand_list=paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        rand_list=paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        rands=paginator.page(paginator.num_pages)
 
+    return render(request,'scientificWork/rads.html',{"rands": rand_list,'n':n,'c':c})
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')

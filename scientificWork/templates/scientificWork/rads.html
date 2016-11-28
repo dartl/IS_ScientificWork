@@ -7,17 +7,18 @@
         <h3 class="panel-title">Фильтр</h3>
     </div>
     <div class="panel-body">
-        <form role="form">
+        <form role="form" action="rads" method="POST">
+        {%csrf_token%}
             <div class="row">
                 <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                    <label for="exampleInputEmail1">название НИОКР</label>
+                    <input type="text" name="name" class="form-control" placeholder="Введите название">
                 </div>
                 <div class="col-md-3">
-                    <label for="exampleInputEmail1">Какое-то поле</label>
-                    <input type="email" class="form-control" placeholder="Какое-то поле">
+                    <label for="exampleInputEmail1">шифр  НИОКР</label>
+                    <input type="text" name="cipher"    class="form-control" placeholder="Введите шифр">
                 </div>
-                <div class="col-md-3">
+               <!-- <div class="col-md-3">
                     <label for="exampleInputEmail1">Какое-то поле</label>
                     <input type="email" class="form-control" placeholder="Какое-то поле">
                 </div>
@@ -56,13 +57,78 @@
                         <option>Второй пункт</option>
                         <option>Третий пункт</option>
                     </select>
-                </div>
+                </div>-->
                 <br/>
                 <div class="col-md-12 text-center filter_button">
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
+                     <button type="submit" id="btn_filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
+                    <button type="reset" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span> Сбросить</button>
                 </div>
             </div>
         </form>
+       <!-- {% for Rand in rands %}
+        
+             <ul>
+                
+                <p><li><strong>Название</strong>:{{ Rand.name }}</p> <p><strong>Шифр</strong>:{{ Rand.cipher }}</li></p>
+                
+             </ul>
+                {% endfor %}-->
+       
+         
+                
+          
+         
+   
+  
+        
+
+
+
+ 
+</div>
+</div>
+
+<div class="row content">
+    {% for rand in rands %}
+        <div class="col-md-12 element">
+            <div class="col-md-3">
+                <strong>Название НИОКР</strong>
+                <p>{{ rand.name }}</p>
+            </div>
+            
+            
+
+            <div class="col-md-3">
+                <strong>Шифр НИОКР</strong>
+                <p>{{ rand.cipher }}</p>
+            </div>
+
+            
+            
+        </div>
+    {% endfor %}
+    <div class="col-md-12 pagination text-center">
+        <span class="step-links">
+
+    <!--?typePublication=guidelines&publishingHouseName=&place=&date=&volume=&unitVolume=&edition=&bookName=&type=&isbn=&number=
+    &editor=&nameSbornik=&reiteration= -->
+            {% if rands.has_previous %}
+                <a href="?page={{ rands.previous_page_number }}&name={{ n }}&cipher={{ c }}">Предыдущая</a>
+            {% endif %}
+
+            <span class="current">
+                Страница {{ rands.number }} из {{ rands.paginator.num_pages }}.
+            </span>
+
+            {% if rands.has_next %}
+                <a href="?page={{ rands.next_page_number }}&name={{ n }}&cipher={{ c }}">Следующая</a>
+            {% endif %}
+        </span>
     </div>
 </div>
+
+    
+
 {% endblock %}
+
+
