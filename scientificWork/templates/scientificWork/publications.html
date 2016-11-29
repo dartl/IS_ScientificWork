@@ -11,7 +11,7 @@
             <div class="row">
             	<div class="col-md-3">
                     <label for="publishingHouseName">ФИО автора</label>
-                    <input type="text" name="userName" class="form-control" placeholder="Например: Столетов А.М.">
+                    <input type="text" name="userName" class="form-control" placeholder="Например: Столетов">
                 </div>
                 <div class="col-md-3">
                     <label for="typePublication">Тип публикации</label>
@@ -95,7 +95,7 @@
 	    <div class="col-md-12 element">
 	    	<div class="col-md-3">
 		    	<strong>Автор</strong>
-		        <p>{{ note.user.user.last_name }}</p>
+		        <p>{{ note.user }}</p>
 	    	</div>
 	        
 	    	<div class="col-md-3">
@@ -143,11 +143,12 @@
 		        <p>{{ note.edition }}</p>
 	        </div>
 
-
-	        <div class="col-md-3">
-		        <strong>Название</strong>
-		        <p>{{ note.bookName }}</p>
-	        </div>
+	        {% if note.typePublication != "collection" %}
+		        <div class="col-md-3">
+			        <strong>Название</strong>
+			        <p>{{ note.bookName }}</p>
+		        </div>
+	        {% endif %}
 
 	        {% if note.typePublication == "guidelines" or note.typePublication == "book" or note.typePublication == compilation %}
 		        <div class="col-md-3">

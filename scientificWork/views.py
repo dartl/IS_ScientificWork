@@ -13,12 +13,12 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 
 # Константы
-MAX_ELEMENT_PAGE = 5; # Максимальное количество элементов на странице
+MAX_ELEMENT_PAGE = 3; # Максимальное количество элементов на странице
 
 def index(request):
 	return render(request,'scientificWork/index.html')
 
- 
+
 def competitions(request):
     comp_list=Participation.objects.all()
     users = UserProfile.objects.all()
@@ -63,7 +63,6 @@ def competitions(request):
         comp_list = paginator.page(1)
     except EmptyPage:
         comp_list = paginator.page(paginator.num_pages)
-
     return render(request, 'scientificWork/competitions.html',
                       {'comps': comp_list,
                        't': t,

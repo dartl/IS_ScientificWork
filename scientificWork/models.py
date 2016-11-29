@@ -132,7 +132,7 @@ class Publication(models.Model):
         ('book', 'Книга'),
         ('journal', 'Статья в журнале'),
         ('compilation', 'Конспект лекции/сборник докладов'),
-        ('collection ', 'Сборник трудов')
+        ('collection', 'Сборник трудов')
     )
     reIter = (
         ('disposable', 'одноразовый'),
@@ -193,5 +193,5 @@ class Participation(models.Model):
 
 class Rand(models.Model):
     user = models.ForeignKey(UserProfile, default="")
-    name = models.CharField("Название НИОКР", max_length="100")  # Название НИОКР
-    cipher = models.CharField("Шифр", max_length="100")  #Шифр
+    name = models.CharField("Название НИОКР", max_length="300")  # Название НИОКР
+    cipher = models.CharField("Шифр", max_length="300")  #Шифр
