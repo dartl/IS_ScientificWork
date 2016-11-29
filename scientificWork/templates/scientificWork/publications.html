@@ -195,7 +195,7 @@
 	<div class="col-md-12 pagination text-center">
 	    <span class="step-links">
 	        {% if notes.has_previous %}
-	            <a href="?page={{ notes.previous_page_number }}&typePublication={{ tp }}&publishingHouseName={{ pH }}&place={{ pl }}&date={{ dt }}&volume={{ vl }}&unitVolume={{ uvl }}&edition={{ ed }}&bookName={{ nm }}&type={{ type }}&isbn={{ ISBN }}&number={{ number }}&editor={{ editor }}&nameSbornik={{ nameSbornik }}&reiteration={{ reiteration }}">Предыдущая</a>
+	            <a href="?page={{ notes.previous_page_number }}&userName={{ userName }}&typePublication={{ tp }}&publishingHouseName={{ pH }}&place={{ pl }}&date={{ dt }}&volume={{ vl }}&unitVolume={{ uvl }}&edition={{ ed }}&bookName={{ nm }}&type={{ type }}&isbn={{ ISBN }}&number={{ number }}&editor={{ editor }}&nameSbornik={{ nameSbornik }}&reiteration={{ reiteration }}">Предыдущая</a>
 	        {% endif %}
 
 	        <span class="current">
@@ -203,7 +203,7 @@
 	        </span>
 
 	        {% if notes.has_next %}
-	            <a href="?page={{ notes.next_page_number }}&typePublication={{ tp }}&publishingHouseName={{ pH }}&place={{ pl }}&date={{ dt }}&volume={{ vl }}&unitVolume={{ uvl }}&edition={{ ed }}&bookName={{ nm }}&type={{ type }}&isbn={{ ISBN }}&number={{ number }}&editor={{ editor }}&nameSbornik={{ nameSbornik }}&reiteration={{ reiteration }}">Следующая</a>
+	            <a href="?page={{ notes.next_page_number }}&userName={{ userName }}&typePublication={{ tp }}&publishingHouseName={{ pH }}&place={{ pl }}&date={{ dt }}&volume={{ vl }}&unitVolume={{ uvl }}&edition={{ ed }}&bookName={{ nm }}&type={{ type }}&isbn={{ ISBN }}&number={{ number }}&editor={{ editor }}&nameSbornik={{ nameSbornik }}&reiteration={{ reiteration }}">Следующая</a>
 	        {% endif %}
 	    </span>
 	</div>

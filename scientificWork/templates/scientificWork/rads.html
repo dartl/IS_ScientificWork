@@ -51,7 +51,7 @@
     <div class="col-md-12 pagination text-center">
         <span class="step-links">
             {% if rands.has_previous %}
-                <a href="?page={{ rands.previous_page_number }}&name={{ n }}&cipher={{ c }}">Предыдущая</a>
+                <a href="?page={{ rands.previous_page_number }}&userName={{ userName }}&name={{ n }}&cipher={{ c }}">Предыдущая</a>
             {% endif %}
 
             <span class="current">
@@ -59,7 +59,7 @@
             </span>
 
             {% if rands.has_next %}
-                <a href="?page={{ rands.next_page_number }}&name={{ n }}&cipher={{ c }}">Следующая</a>
+                <a href="?page={{ rands.next_page_number }}&userName={{ userName }}&name={{ n }}&cipher={{ c }}">Следующая</a>
             {% endif %}
         </span>
     </div>

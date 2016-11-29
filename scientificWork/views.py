@@ -12,6 +12,9 @@ from scientificWork.models import Publication, UserProfile, Rand, Participation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 
+# Константы
+MAX_ELEMENT_PAGE = 5; # Максимальное количество элементов на странице
+
 def index(request):
 	return render(request,'scientificWork/index.html')
 
@@ -51,7 +54,7 @@ def competitions(request):
         if (rk != ''): comp_list = comp_list.filter(rank=rk)       
     if 'button_reset' in request.GET:
         comp_list=Participation.objects.all()
-    paginator = Paginator(comp_list, 10)
+    paginator = Paginator(comp_list, MAX_ELEMENT_PAGE)
     page = request.GET.get('page')
     try:
         comp_list = paginator.page(page)
@@ -68,7 +71,8 @@ def competitions(request):
                        'n': n,
                        'dt': dt,
                        'rk': rk,
-                       'r': r
+                       'r': r,
+                       'userName': userName,
                        })
     
 
@@ -131,7 +135,7 @@ def publications(request):
         if (reiteration != ''): s = s.filter(reiteration=reiteration)
     if 'button_reset' in request.GET:
         s = Publication.objects.all()
-    paginator = Paginator(s, 10)
+    paginator = Paginator(s, MAX_ELEMENT_PAGE)
     page = request.GET.get('page')
     try:
         s = paginator.page(page)
@@ -142,7 +146,7 @@ def publications(request):
         s = paginator.page(paginator.num_pages)
     return render(request, 'scientificWork/publications.html',
                   {'notes': s,
-                   'users': users,
+                   'userName': userName,
                    'pH': pH,
                    'pl': pl,
                    'tp': tp,
@@ -179,10 +183,10 @@ def rads(request):
                 users = users.filter(user_id=user_ids)[0].id
                 rand_list = rand_list.filter(user_id=users)
             else:
-                rand_list = rand_list.filter(type='1')
+                rand_list = rand_list.filter(cipher='-123')
     if 'button_reset' in request.GET:
         rand_list=Rand.objects.all()
-    paginator=Paginator(rand_list,5)
+    paginator=Paginator(rand_list,MAX_ELEMENT_PAGE)
     page=request.GET.get('page')
     try:
         rand_list=paginator.page(page)
@@ -193,7 +197,7 @@ def rads(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         rands=paginator.page(paginator.num_pages)
 
-    return render(request,'scientificWork/rads.html',{"rands": rand_list,'n':n,'c':c})
+    return render(request,'scientificWork/rads.html',{"rands": rand_list,'n':n,'c':c, 'userName': userName,})
 
 
 def user_login(request):

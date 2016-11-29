@@ -108,7 +108,7 @@
     <div class="col-md-12 pagination text-center">
         <span class="step-links">
             {% if comps.has_previous %}
-                <a href="?page={{ comps.previous_page_number }}&type={{ t }}&date={{dt}}&name={{ n }}&rank={{ rk }}&place={{ p }}&reiteration={{ r }}">Предыдущая</a>
+                <a href="?page={{ comps.previous_page_number }}&userName={{ userName }}&type={{ t }}&date={{dt}}&name={{ n }}&rank={{ rk }}&place={{ p }}&reiteration={{ r }}">Предыдущая</a>
             {% endif %}
 
             <span class="current">
@@ -116,7 +116,7 @@
             </span>
 
             {% if comps.has_next %}
-                <a href="?page={{ comps.next_page_number }}&type={{ t }}&date={{dt}}&name={{ n }}&rank={{ rk }}&place={{ p }}&reiteration={{ r }}">Следующая</a>
+                <a href="?page={{ comps.next_page_number }}&userName={{ userName }}&type={{ t }}&date={{dt}}&name={{ n }}&rank={{ rk }}&place={{ p }}&reiteration={{ r }}">Следующая</a>
             {% endif %}
         </span>
     </div>
