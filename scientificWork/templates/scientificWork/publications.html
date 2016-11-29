@@ -7,9 +7,12 @@
         <h3 class="panel-title">Фильтр</h3>
     </div>
     <div class="panel-body">
-        <form role="form" action="publications" method="POST">
-        {% csrf_token %}
+        <form role="form" action="publications" method="GET">
             <div class="row">
+            	<div class="col-md-3">
+                    <label for="publishingHouseName">ФИО автора</label>
+                    <input type="text" name="userName" class="form-control" placeholder="Например: Столетов А.М.">
+                </div>
                 <div class="col-md-3">
                     <label for="typePublication">Тип публикации</label>
                     <select id="disabledSelect" name="typePublication" class="form-control">
@@ -43,7 +46,7 @@
                 </div>
                 <div class="col-md-3">
                     <label for="edition">Тираж</label>
-                    <input type="text" name="edition" class="form-control" placeholder="Число выпущенных изданий">
+                    <input type="number" name="edition" class="form-control" placeholder="Число выпущенных изданий">
                 </div>
                 <div class="col-md-3">
                     <label for="bookName">Название публикации</label>
@@ -92,7 +95,7 @@
 	    <div class="col-md-12 element">
 	    	<div class="col-md-3">
 		    	<strong>Автор</strong>
-		        <p>{{ note.user }}</p>
+		        <p>{{ note.user.user.last_name }}</p>
 	    	</div>
 	        
 	    	<div class="col-md-3">

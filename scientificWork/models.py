@@ -3,6 +3,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.encoding import python_2_unicode_compatible
+from djangotoolbox.fields import EmbeddedModelField
 
 # Общие модели
 PERSON_TYPE_CHOICES = (
@@ -137,8 +138,7 @@ class Publication(models.Model):
         ('disposable', 'одноразовый'),
         ('repeating','повторяющийся')
     )
-    # user = EmbedOverrideField('UserProfile')
-    user = models.ForeignKey(UserProfile)
+    user =  models.ForeignKey(UserProfile) 
     typePublication = models.CharField("Тип публикации",
                                        max_length="20",
                                        choices=tpPubl,

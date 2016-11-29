@@ -7,9 +7,12 @@
         <h3 class="panel-title">Фильтр</h3>
     </div>
     <div class="panel-body">
-        <form role="form" action="competitions" method="POST">
-            {% csrf_token %}
+        <form role="form" action="competitions" method="GET">
             <div class="row">
+                <div class="col-md-3">
+                    <label for="publishingHouseName">ФИО пользователя</label>
+                    <input type="text" name="userName" class="form-control" placeholder="Например: Столетов А.М.">
+                </div>
                 <div class="col-md-3">
                     <label for="type">Тип </label>
                     <select id="disabledSelect" name="type" class="form-control">
@@ -56,6 +59,11 @@
 <div class="row content">
     {% for comp in comps %}
         <div class="col-md-12 element">
+            <div class="col-md-3">
+                <strong>Пользователь</strong>
+                <p>{{ comp.user.user.last_name }}</p>
+            </div>
+
             <div class="col-md-3">
                 <strong>Название</strong>
                 <p>{{ comp.name }}</p>
