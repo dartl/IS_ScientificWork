@@ -63,6 +63,12 @@ body {
   display: none;
 }
 
+.display-block-a {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+
 .main {
   padding: 20px;
 }
@@ -92,6 +98,17 @@ body {
     padding: 20px;
     margin: 0 0 20px 0;
   }
+
+  .main .filter .panel-heading{
+    overflow: hidden;
+  }
+
+    .main .filter .panel-heading h3 {
+      float: left;
+    }
+    .main .filter .panel-heading .glyphicon{
+      float:right;
+    }
 
 
 /*

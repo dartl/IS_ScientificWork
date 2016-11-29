@@ -9,9 +9,11 @@ $(window).load(function () {
     }
 
     if ($(this).val() == "guidelines") {
-      $(".filter .display-none").hide(300);
-      $("[name='type']").parent().show(300);
-      $("[name='isbn']").parent().show(300);
+      if (last_type != "book") {
+        $(".filter .display-none").hide(300);
+        $("[name='type']").parent().show(300);
+        $("[name='isbn']").parent().show(300);
+      }
     }
 
     if ($(this).val() == "book") {
@@ -47,4 +49,13 @@ $(window).load(function () {
     }
     last_type = $(this).val();
   });
+
+  $('#collapseOne').on('hide.bs.collapse', function () {
+    $(".filter .panel-heading .glyphicon").removeClass("glyphicon-chevron-up");
+    $(".filter .panel-heading .glyphicon").addClass("glyphicon-chevron-down");
+  })
+  $('#collapseOne').on('show.bs.collapse', function () {
+    $(".filter .panel-heading .glyphicon").removeClass("glyphicon-chevron-down");
+    $(".filter .panel-heading .glyphicon").addClass("glyphicon-chevron-up");
+  })
 });
