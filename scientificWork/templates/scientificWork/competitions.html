@@ -14,13 +14,12 @@
                     <label for="type">Тип </label>
                     <select id="disabledSelect" name="type" class="form-control">
                         <option value="" selected>...</option>
-                        <option value="conference">Конференция </option>
-                        <option value="seminar">Cеминар </option>
-                        
+                        <option value="conference">Конференция</option>
+                        <option value="seminar">Cеминар</option>
                     </select>
                 </div>
                 <div class="col-md-3">
-                    <label for="name">Название конференции/семинара </label>
+                    <label for="name">Название</label>
                     <input type="text" name="name" class="form-control" placeholder="Название">
                 </div>
                 <div class="col-md-3">
@@ -35,7 +34,7 @@
                     <label for="rank">Ранг</label>
                     <input type="text" name="rank" class="form-control" placeholder="Ранг">
                 </div>
-                <div class="col-md-3 display-none">
+                <div class="col-md-3">
                     <label for="reiteration">Вид повторения </label>
                     <select id="disabledSelect" name="reiteration" class="form-control">
                         <option value="" selected>...</option>
@@ -46,8 +45,8 @@
                 <br/>
 
                 <div class="col-md-12 text-center filter_button">
-                    <button type="submit" id="btn_filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
-                    <button type="reset" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span> Сбросить</button>
+                    <button type="submit" name="button_filter" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Применить фильтр</button>
+                    <button type="submit" name="reset" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span> Сбросить</button>
                 </div>
                 
             </div>
@@ -60,7 +59,7 @@
             <div class="col-md-3">
                 <strong>Название</strong>
                 <p>{{ comp.name }}</p>
-        </div>
+            </div>
             
             <div class="col-md-3">
                 <strong>Тип </strong>
@@ -87,16 +86,14 @@
                 <p>{{ comp.date|date:'d-m-Y' }}</p>
             </div>
 
-            
-
-                <div class="col-md-3">
-                    <strong>Вид повторения </strong>
-                    {% if comp.reiteration == "disposable" %}
-                         <p>Одноразовый</p>
-                    {% elif comp.reiteration == "repeating" %}
-                        <p>Повторяющийся</p>
-                    {% endif %}
-                </div>
+            <div class="col-md-3">
+                <strong>Вид повторения </strong>
+                {% if comp.reiteration == "disposable" %}
+                     <p>Одноразовый</p>
+                {% elif comp.reiteration == "repeating" %}
+                    <p>Повторяющийся</p>
+                {% endif %}
+            </div>
             
         </div>
     {% endfor %}

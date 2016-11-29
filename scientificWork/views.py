@@ -23,19 +23,20 @@ def competitions(request):
     p = ''    
     r=''
     rk=''
-    if request.POST:
-        t=request.POST.get('type')
-        n = request.POST.get('name')
-        p = request.POST.get('place')
-        dt = request.POST.get('date')        
-        r = request.POST.get('reiteration')
-        rk = request.POST.get('rank')       
-        if (t != ''): comp_list = comp_list.filter(type=t)
-        if (n != ''): comp_list = comp_list.filter(name=n)
-        if (p != ''): comp_list = comp_list.filter(place=p)
-        if (dt != ''): comp_list = comp_list.filter(date=dt)
-        if (r != ''): s = s.filter(reiteration=r)        
-        if (rk != ''): comp_list = comp_list.filter(rank=rk)       
+    if 'button_filter' in request.POST:
+        if request.POST:
+            t=request.POST.get('type')
+            n = request.POST.get('name')
+            p = request.POST.get('place')
+            dt = request.POST.get('date')        
+            r = request.POST.get('reiteration')
+            rk = request.POST.get('rank')       
+            if (t != ''): comp_list = comp_list.filter(type=t)
+            if (n != ''): comp_list = comp_list.filter(name=n)
+            if (p != ''): comp_list = comp_list.filter(place=p)
+            if (dt != ''): comp_list = comp_list.filter(date=dt)
+            if (r != ''): s = s.filter(reiteration=r)        
+            if (rk != ''): comp_list = comp_list.filter(rank=rk)       
     paginator = Paginator(comp_list, 10)
     page = request.POST.get('page')
     try:
@@ -52,9 +53,7 @@ def competitions(request):
                        'p': p,
                        'n': n,
                        'dt': dt,
-                       
                        'rk': rk,
-                       
                        'r': r
                        })
     
@@ -75,35 +74,36 @@ def publications(request):
     editor = ''
     nameSbornik = ''
     reiteration = ''
-    if request.POST:
-        pH = request.POST.get('publishingHouseName')
-        pl = request.POST.get('place')
-        tp = request.POST.get('typePublication')
-        dt = request.POST.get('date')
-        vl = request.POST.get('volume')
-        uvl = request.POST.get('unitVolume')
-        ed = request.POST.get('edition')
-        nm = request.POST.get('bookName')
-        type = request.POST.get('type')
-        ISBN = request.POST.get('isbn')
-        number = request.POST.get('number')
-        editor = request.POST.get('editor')
-        nameSbornik = request.POST.get('nameSbornik')
-        reiteration = request.POST.get('reiteration')
-        if (pH != ''): s = s.filter(publishingHouseName=pH)
-        if (pl != ''): s = s.filter(place=pl)
-        if (tp != ''): s = s.filter(typePublication=tp)
-        if (dt != ''): s = s.filter(date=dt)
-        if (vl != ''): s = s.filter(volume=vl)
-        if (uvl != ''): s = s.filter(unitVolume=uvl)
-        if (ed != ''): s = s.filter(edition=ed)
-        if (nm != ''): s = s.filter(bookName=nm)
-        if (type != ''): s = s.filter(type=type)
-        if (ISBN != ''): s = s.filter(isbn=ISBN)
-        if (number != ''): s = s.filter(number=number)
-        if (editor != ''): s = s.filter(editor=editor)
-        if (nameSbornik != ''): s = s.filter(nameSbornik=nameSbornik)
-        if (reiteration != ''): s = s.filter(reiteration=reiteration)
+    if 'button_filter' in request.POST:
+        if request.POST:
+            pH = request.POST.get('publishingHouseName')
+            pl = request.POST.get('place')
+            tp = request.POST.get('typePublication')
+            dt = request.POST.get('date')
+            vl = request.POST.get('volume')
+            uvl = request.POST.get('unitVolume')
+            ed = request.POST.get('edition')
+            nm = request.POST.get('bookName')
+            type = request.POST.get('type')
+            ISBN = request.POST.get('isbn')
+            number = request.POST.get('number')
+            editor = request.POST.get('editor')
+            nameSbornik = request.POST.get('nameSbornik')
+            reiteration = request.POST.get('reiteration')
+            if (pH != ''): s = s.filter(publishingHouseName=pH)
+            if (pl != ''): s = s.filter(place=pl)
+            if (tp != ''): s = s.filter(typePublication=tp)
+            if (dt != ''): s = s.filter(date=dt)
+            if (vl != ''): s = s.filter(volume=vl)
+            if (uvl != ''): s = s.filter(unitVolume=uvl)
+            if (ed != ''): s = s.filter(edition=ed)
+            if (nm != ''): s = s.filter(bookName=nm)
+            if (type != ''): s = s.filter(type=type)
+            if (ISBN != ''): s = s.filter(isbn=ISBN)
+            if (number != ''): s = s.filter(number=number)
+            if (editor != ''): s = s.filter(editor=editor)
+            if (nameSbornik != ''): s = s.filter(nameSbornik=nameSbornik)
+            if (reiteration != ''): s = s.filter(reiteration=reiteration)
     paginator = Paginator(s, 10)
     page = request.POST.get('page')
     try:
@@ -113,7 +113,6 @@ def publications(request):
         s = paginator.page(1)
     except EmptyPage:
         s = paginator.page(paginator.num_pages)
-
     return render(request, 'scientificWork/publications.html',
                   {'notes': s,
                    'pH': pH,
@@ -136,11 +135,12 @@ def rads(request):
     rand_list=Rand.objects.all()
     n=''
     c=''
-    if request.POST:
-        n=request.POST.get('name')
-        c=request.POST.get('cipher')
-        if(n!=''):rand_list=rand_list.filter(name=n)
-        if(c!=''):rand_list=rand_list.filter(cipher=c)
+    if 'button_filter' in request.POST:
+        if request.POST:
+            n=request.POST.get('name')
+            c=request.POST.get('cipher')
+            if(n!=''):rand_list=rand_list.filter(name=n)
+            if(c!=''):rand_list=rand_list.filter(cipher=c)
     
     paginator=Paginator(rand_list,5)
     page=request.POST.get('page')
@@ -154,7 +154,7 @@ def rads(request):
         rands=paginator.page(paginator.num_pages)
 
     return render(request,'scientificWork/rads.html',{"rands": rand_list,'n':n,'c':c})
-    
+
 
 def user_login(request):
     if request.method == 'POST':
