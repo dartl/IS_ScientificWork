@@ -8,9 +8,12 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from scientificWork.models import Publication, UserProfile, Rand, Participation
+from scientificWork.models import Publication, Rand, Participation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
+from datetime import datetime
+from moevmCommon.models import UserProfile
+
 
 # Константы
 MAX_ELEMENT_PAGE = 3; # Максимальное количество элементов на странице
@@ -77,7 +80,6 @@ def competitions(request):
 
 def publications(request):
     s = Publication.objects.all()
-    users = UserProfile.objects.all()
     users_with_names = User.objects.all()
     userName = ''
     pH = ''
@@ -111,17 +113,27 @@ def publications(request):
         nameSbornik = request.GET.get('nameSbornik')
         reiteration = request.GET.get('reiteration')
         if (userName != ''): 
-            users_with_names = users_with_names.filter(last_name=userName)
+            userNameList = userName.split()
+            users_with_names = users_with_names.filter(last_name__icontains=userNameList[0])
+            if len(userNameList) > 1: users_with_names = users_with_names.filter(first_name__icontains=userNameList[1])
+
             if users_with_names:
-                user_ids = users_with_names[0].id
-                users = users.filter(user_id=user_ids)[0].id
-                s = s.filter(user_id=users)
-            else:
-                s = s.filter(type='1')
+                A = []
+                for item in users_with_names:
+                    users = UserProfile.objects.all()
+                    users = users.filter(user_id=item.id)
+                    if len(userNameList) > 2: 
+                        users = users.filter(patronymic__icontains=userNameList[2])
+                    if users.count() > 0:
+                        A.append(users[0].id)
+                #user_ids = users_with_names[0].id
+                s = s.filter(user_id__in=A)
         if (pH != ''): s = s.filter(publishingHouseName=pH)
         if (pl != ''): s = s.filter(place=pl)
         if (tp != ''): s = s.filter(typePublication=tp)
-        if (dt != ''): s = s.filter(date=dt)
+        if (dt != ''):
+            datetime_object = datetime.strptime(dt, '%d-%M-%Y').strftime('%Y-%M-%d')
+            s = s.filter(date=datetime_object)
         if (vl != ''): s = s.filter(volume=vl)
         if (uvl != ''): s = s.filter(unitVolume=uvl)
         if (ed != ''): s = s.filter(edition=ed)

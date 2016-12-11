@@ -130,7 +130,8 @@ INSTALLED_APPS = (
 
     'djangotoolbox',
     'django_mongodb_engine',
-    'scientificWork',
+    'moevmCommon',
+    'scientificWork'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

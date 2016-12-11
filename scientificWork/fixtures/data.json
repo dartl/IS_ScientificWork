@@ -68,7 +68,7 @@
     }
   },
   {
-    "model": "scientificWork.UserProfile",
+    "model": "moevmCommon.UserProfile",
     "pk": 5,
     "fields": {
       "id": "583d573cb179a919a410c47b",
@@ -90,7 +90,7 @@
     }
   },
   {
-    "model": "scientificWork.UserProfile",
+    "model": "moevmCommon.UserProfile",
     "pk": 6,
     "fields": {
       "id": "583d57b0b179a919a410c4a8",
@@ -112,7 +112,7 @@
     }
   },
   {
-    "model": "scientificWork.UserProfile",
+    "model": "moevmCommon.UserProfile",
     "pk": 7,
     "fields": {
       "id": "583d57d4b179a919a410c4af",
@@ -134,7 +134,7 @@
     }
   },
   {
-    "model": "scientificWork.UserProfile",
+    "model": "moevmCommon.UserProfile",
     "pk": 8,
     "fields": {
       "id": "583d580cb179a919a410c4b6",
@@ -337,6 +337,67 @@
       "cipher": "2345",
       "user": "583d57b0b179a919a410c4a8",
       "name": "Исследования аэродинамики, динамики полета, акустики и безопасности полета с целью разработки"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 21,
+    "fields": {
+      "id": "583d5605b179a919a410c441",
+      "username": "pokers",
+      "first_name": "Петр",
+      "last_name": "Столетов",
+      "is_active": true,
+      "email": "pokers@mail.ru",
+      "is_superuser": false,
+      "is_staff": false,
+      "last_login": "2016-11-29 04:18:45",
+      "password": "pbkdf2_sha256$10000$tAjO8NABasTk$GdDxzfhVbS9mBFtTPxBQSbjYxvDguuZErLeiVGV4IvQ=",
+      "date_joined": "2016-11-29 04:18:45"
+    }
+  },
+  {
+    "model": "moevmCommon.UserProfile",
+    "pk": 22,
+    "fields": {
+      "id": "583d573cb179a919a410c471",
+      "user": "583d5605b179a919a410c441",
+      "github_id": "poker1",
+      "study_group": "2303",
+      "election_date": "2016-11-01",
+      "stepic_id": "1",
+      "contract_date": "2016-10-01",
+      "academic_status": "a",
+      "birth_date": "2016-11-16",
+      "academic_degree": "n",
+      "academic_state": "s",
+      "year_of_academic_status": "2016-08-01",
+      "patronymic": "Витальевич",
+      "position": "Позиция",
+      "type": "s",
+      "year_of_academic_degree": "2017-01-31"
+    }
+  },
+  {
+    "model": "scientificWork.Publication",
+    "pk": 23,
+    "fields": {
+      "id": "583d5bc9b179a90da8c4bf22",
+      "reiteration": "disposable",
+      "user": "583d573cb179a919a410c471",
+      "typePublication": "guidelines",
+      "unitVolume": "страниц",
+      "publishingHouseName": "Изд-во СПбГЭТУ «ЛЭТИ»",
+      "number": null,
+      "volume": 253,
+      "edition": 1000,
+      "nameSbornik": "",
+      "place": "Санкт-Петербург",
+      "editor": "",
+      "date": "2004-11-15",
+      "isbn": "5-203-12232",
+      "type": "Учебное пособие",
+      "bookName": "sgdf"
     }
   }
 ]

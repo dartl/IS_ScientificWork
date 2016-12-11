@@ -58,4 +58,9 @@ $(window).load(function () {
     $(".filter .panel-heading .glyphicon").removeClass("glyphicon-chevron-down");
     $(".filter .panel-heading .glyphicon").addClass("glyphicon-chevron-up");
   })
+
+  $('form[role=form]').submit(function() {
+      return false;
+  });
+
 });
